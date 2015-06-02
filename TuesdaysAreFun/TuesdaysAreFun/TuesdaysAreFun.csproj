@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE65F55C-E4D6-4E16-B0A7-09B7CCC51972}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TuesdaysAreFun</RootNamespace>
+    <AssemblyName>TuesdaysAreFun</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>console.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CommandAttribute.cs" />
+    <Compile Include="CommandBase.cs" />
+    <Compile Include="CommandInputable.cs" />
+    <Compile Include="Commands\CmdCards.cs" />
+    <Compile Include="Commands\CmdCount.cs" />
+    <Compile Include="Commands\CmdEcho.cs" />
+    <Compile Include="Commands\CmdRepeat.cs" />
+    <Compile Include="Commands\CmdSay.cs" />
+    <Compile Include="Commands\CmdTellraw.cs" />
+    <Compile Include="CommandViewModel.cs" />
+    <Compile Include="CustomStringAttribute.cs" />
+    <Compile Include="Tests\Cards\Card.cs" />
+    <Compile Include="Tests\Game\CardGame.cs" />
+    <Compile Include="Tests\Cards\CardPile.cs" />
+    <Compile Include="Tests\Game\ImageGraphic.cs" />
+    <Compile Include="Tests\Game\IGraphic.cs" />
+    <Compile Include="Tests\Game\KeyboardState.cs" />
+    <Compile Include="Tests\Game\MouseState.cs" />
+    <Compile Include="Tests\Game\PartialImageGraphic.cs" />
+    <Compile Include="Tests\Game\Sprite.cs" />
+    <Compile Include="Tests\Game\Vector2.cs" />
+    <Compile Include="TextFormat.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="Windows\CardRenderWindow.xaml.cs">
+      <DependentUpon>CardRenderWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\CardRenderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="console.ico" />
+    <Resource Include="console.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="assets\1.png" />
+    <Resource Include="assets\10.png" />
+    <Resource Include="assets\11.png" />
+    <Resource Include="assets\12.png" />
+    <Resource Include="assets\13.png" />
+    <Resource Include="assets\14.png" />
+    <Resource Include="assets\15.png" />
+    <Resource Include="assets\16.png" />
+    <Resource Include="assets\17.png" />
+    <Resource Include="assets\18.png" />
+    <Resource Include="assets\19.png" />
+    <Resource Include="assets\2.png" />
+    <Resource Include="assets\20.png" />
+    <Resource Include="assets\21.png" />
+    <Resource Include="assets\22.png" />
+    <Resource Include="assets\23.png" />
+    <Resource Include="assets\24.png" />
+    <Resource Include="assets\25.png" />
+    <Resource Include="assets\26.png" />
+    <Resource Include="assets\27.png" />
+    <Resource Include="assets\28.png" />
+    <Resource Include="assets\29.png" />
+    <Resource Include="assets\3.png" />
+    <Resource Include="assets\30.png" />
+    <Resource Include="assets\31.png" />
+    <Resource Include="assets\32.png" />
+    <Resource Include="assets\33.png" />
+    <Resource Include="assets\34.png" />
+    <Resource Include="assets\35.png" />
+    <Resource Include="assets\36.png" />
+    <Resource Include="assets\37.png" />
+    <Resource Include="assets\38.png" />
+    <Resource Include="assets\39.png" />
+    <Resource Include="assets\4.png" />
+    <Resource Include="assets\40.png" />
+    <Resource Include="assets\41.png" />
+    <Resource Include="assets\42.png" />
+    <Resource Include="assets\43.png" />
+    <Resource Include="assets\44.png" />
+    <Resource Include="assets\45.png" />
+    <Resource Include="assets\46.png" />
+    <Resource Include="assets\47.png" />
+    <Resource Include="assets\48.png" />
+    <Resource Include="assets\49.png" />
+    <Resource Include="assets\5.png" />
+    <Resource Include="assets\50.png" />
+    <Resource Include="assets\51.png" />
+    <Resource Include="assets\52.png" />
+    <Resource Include="assets\53.png" />
+    <Resource Include="assets\54.png" />
+    <Resource Include="assets\6.png" />
+    <Resource Include="assets\7.png" />
+    <Resource Include="assets\8.png" />
+    <Resource Include="assets\9.png" />
+    <Resource Include="assets\b1fh.png" />
+    <Resource Include="assets\b1fv.png" />
+    <Resource Include="assets\b1pb.png" />
+    <Resource Include="assets\b1pl.png" />
+    <Resource Include="assets\b1pr.png" />
+    <Resource Include="assets\b1pt.png" />
+    <Resource Include="assets\b2fh.png" />
+    <Resource Include="assets\b2fv.png" />
+    <Resource Include="assets\b2pb.png" />
+    <Resource Include="assets\b2pl.png" />
+    <Resource Include="assets\b2pr.png" />
+    <Resource Include="assets\b2pt.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
