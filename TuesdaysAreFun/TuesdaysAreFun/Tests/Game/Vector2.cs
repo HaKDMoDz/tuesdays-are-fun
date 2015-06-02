@@ -8,7 +8,7 @@ using System.Windows;
 namespace TuesdaysAreFun.Tests.Game
 {
 	// Class for mutability
-	public class Vector2 : IEquatable<Vector2>
+	public class Vector2 : IEquatable<Vector2>, ICloneable
 	{
 		public static Vector2 Zero
 		{
@@ -207,6 +207,11 @@ namespace TuesdaysAreFun.Tests.Game
 		public static Vector2 operator-(Vector2 neg)
 		{
 			return Negate(neg);
+		}
+
+		public object Clone()
+		{
+			return new Vector2(X, Y);
 		}
 	}
 }

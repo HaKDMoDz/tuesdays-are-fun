@@ -13,16 +13,16 @@ namespace TuesdaysAreFun.Tests.Cards
 	/// Base class for all card games. Will eventually
 	/// be abstract
 	/// </summary>
-	public class CardGame
+	public class CardGame : IRenderer
 	{
 		protected long FrameNum
 		{ get; private set; }
 
 		public CardRenderWindow Handle
-		{ get; private set; }
+		{ get; protected set; }
 
 		public MouseState Mouse
-		{ get; private set; }
+		{ get; set; }
 
 		public static readonly Vector2 CARD_SIZE = new Vector2(72, 96);
 
@@ -32,6 +32,8 @@ namespace TuesdaysAreFun.Tests.Cards
 		Vector2 cardPos = new Vector2(60, 60);
 		Vector2 clickOffset;
 
+		GCardStack stack = new GCardStack(CardPile.FullDeck, new Vector2(170, 30));
+
 		// ============================ //
 
 		public CardGame(CardRenderWindow window)
@@ -39,14 +41,14 @@ namespace TuesdaysAreFun.Tests.Cards
 			Handle = window;
 		}
 
-		public void Init()
+		public virtual void Init()
 		{
 			Card QH = new Card(CardSuit.Hearts, CardRank.Queen);
 			cardSprite = new ImageGraphic(QH.ImagePath());
 			FrameNum = 0;
 		}
 
-		public void GetInput()
+		public virtual void GetInput()
 		{
 			if (Mouse.IsClickingStart())
 			{
@@ -69,23 +71,24 @@ namespace TuesdaysAreFun.Tests.Cards
 			}
 		}
 
-		public void SendCommand(params string[] cmd)
+		public virtual void SendCommand(params string[] cmd)
 		{
 			cardPos.Y += 30;
 		}
 
-		public void Update(TimeSpan deltaTime)
+		public virtual void Update(TimeSpan deltaTime)
 		{
 			FrameNum++;
 
 			//cardPos.X += deltaTime.TotalSeconds * 10.0;
 		}
 
-		public void Render()
+		public virtual void Render()
 		{
 			Handle.BeginRender();
 
 			Handle.RenderImage(cardSprite, cardPos);
+			stack.Render(Handle);
 
 			Handle.FinishRender();
 		}

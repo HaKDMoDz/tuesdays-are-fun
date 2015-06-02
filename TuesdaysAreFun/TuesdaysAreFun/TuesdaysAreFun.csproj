@@ -74,8 +74,11 @@
     <Compile Include="Tests\Cards\Card.cs" />
     <Compile Include="Tests\Game\CardGame.cs" />
     <Compile Include="Tests\Cards\CardPile.cs" />
+    <Compile Include="Tests\Game\GCardStack.cs" />
     <Compile Include="Tests\Game\ImageGraphic.cs" />
     <Compile Include="Tests\Game\IGraphic.cs" />
+    <Compile Include="Tests\Game\IRenderable.cs" />
+    <Compile Include="Tests\Game\IRenderer.cs" />
     <Compile Include="Tests\Game\KeyboardState.cs" />
     <Compile Include="Tests\Game\MouseState.cs" />
     <Compile Include="Tests\Game\PartialImageGraphic.cs" />
