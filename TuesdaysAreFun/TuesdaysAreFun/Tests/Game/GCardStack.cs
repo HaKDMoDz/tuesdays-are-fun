@@ -40,9 +40,9 @@ namespace TuesdaysAreFun.Tests.Game
 			Vector2 current = Position.Clone() as Vector2;
 			for (int i = 0; i < InnerPile.Count; i += CARDS_PER_IMG)
 			{
-				cardPos.Add(current);
+				cardPos.Add(current.Clone() as Vector2);
 
-				current.X += OFFSET_PER_CARD;
+				current.X += OFFSET_PER_CARD / 2;
 				current.Y += OFFSET_PER_CARD;
 			}
 

@@ -87,8 +87,9 @@ namespace TuesdaysAreFun.Tests.Cards
 		{
 			Handle.BeginRender();
 
-			Handle.RenderImage(cardSprite, cardPos);
 			stack.Render(Handle);
+
+			Handle.RenderImage(cardSprite, cardPos);
 
 			Handle.FinishRender();
 		}
