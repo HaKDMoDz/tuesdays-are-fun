@@ -273,28 +273,6 @@ namespace TuesdaysAreFun
 				Attribute.IsDefined(t, attributeType)).ToArray();
 		}
 
-		public static List<T> GetAllPossibleValues<T>()
-			where T : struct
-		{
-			if (!typeof(T).IsEnum)
-			{
-				throw new ArgumentException("Type argument must be enum. " +
-					typeof(T).ToString() + " is not.");
-			}
-
-			List<T> res = new List<T>();
-			foreach (FieldInfo fi in typeof(T).GetFields())
-			{
-				object obj = fi.GetValue(null);
-				if (obj is T)
-				{
-					res.Add((T)obj);
-				}
-			}
-
-			return res;
-		}
-
 		public static bool StartsWithParams(this string str, params string[] sequences)
 		{
 			foreach (string s in sequences)

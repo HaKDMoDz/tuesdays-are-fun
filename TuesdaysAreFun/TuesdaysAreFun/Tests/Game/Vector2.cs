@@ -10,6 +10,7 @@ namespace TuesdaysAreFun.Tests.Game
 	// Class for mutability
 	public class Vector2 : IEquatable<Vector2>, ICloneable
 	{
+		#region presets
 		public static Vector2 Zero
 		{
 			get
@@ -38,6 +39,7 @@ namespace TuesdaysAreFun.Tests.Game
 				return new Vector2(0, 1);
 			}
 		}
+		#endregion
 
 		public double X
 		{
@@ -82,6 +84,7 @@ namespace TuesdaysAreFun.Tests.Game
 		public Vector2(Point p) : this(p.X, p.Y)
 		{ }
 
+		#region events
 		private void OnXChanging(double oldVal)
 		{
 			if (XChanging != null)
@@ -111,7 +114,9 @@ namespace TuesdaysAreFun.Tests.Game
 				YChanged(this, newVal);
 			}
 		}
+		#endregion
 
+		#region math
 		public static double DotProduct(Vector2 l, Vector2 r)
 		{
 			return (l.X * r.X) + (l.Y * r.Y);
@@ -129,6 +134,7 @@ namespace TuesdaysAreFun.Tests.Game
 		{
 			return new Vector2(-v.X, -v.Y);
 		}
+		#endregion
 
 		public override bool Equals(object obj)
 		{
@@ -160,6 +166,7 @@ namespace TuesdaysAreFun.Tests.Game
 			return "(" + X.ToString() + ", " + Y.ToString() + ")";
 		}
 
+		#region operators
 		public static bool operator==(Vector2 l, Vector2 r)
 		{
 			if (l as object == null && r as object == null)
@@ -208,6 +215,7 @@ namespace TuesdaysAreFun.Tests.Game
 		{
 			return Negate(neg);
 		}
+		#endregion
 
 		public object Clone()
 		{

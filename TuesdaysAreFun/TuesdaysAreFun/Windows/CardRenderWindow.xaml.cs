@@ -76,6 +76,7 @@ namespace TuesdaysAreFun.Windows
 			renderTick.Start();
 
 			Game.Mouse = new MouseState(Mouse.PrimaryDevice, RenderCanvas);
+			Game.Keyboard = new KeyboardState(Keyboard.PrimaryDevice);
 
 			Game.Init();
 		}
@@ -95,7 +96,10 @@ namespace TuesdaysAreFun.Windows
 		private void GetInput()
 		{
 			MouseDevice mouse = Mouse.PrimaryDevice;
+			KeyboardDevice keyboard = Keyboard.PrimaryDevice;
+
 			Game.Mouse.Update(mouse, RenderCanvas);
+			Game.Keyboard.Update(keyboard);
 
 			Game.GetInput();
 		}

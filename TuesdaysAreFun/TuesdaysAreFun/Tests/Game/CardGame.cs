@@ -24,13 +24,16 @@ namespace TuesdaysAreFun.Tests.Cards
 		public MouseState Mouse
 		{ get; set; }
 
+		[Obsolete("Malfunctioning. Does not seem to receive input.")]
+		public KeyboardState Keyboard
+		{ get; set; }
+
 		public static readonly Vector2 CARD_SIZE = new Vector2(72, 96);
 
 		// =========== TEST =========== //
 
-		ImageGraphic cardSprite;
-		Vector2 cardPos = new Vector2(60, 60);
-		Vector2 clickOffset;
+		GCard card = new GCard(new Card(CardSuit.Hearts, CardRank.Queen), new Vector2(30, 50));
+		Vector2 clickOffset = null;
 
 		GCardStack stack = new GCardStack(CardPile.FullDeck, new Vector2(170, 30));
 
@@ -43,8 +46,6 @@ namespace TuesdaysAreFun.Tests.Cards
 
 		public virtual void Init()
 		{
-			Card QH = new Card(CardSuit.Hearts, CardRank.Queen);
-			cardSprite = new ImageGraphic(QH.ImagePath());
 			FrameNum = 0;
 		}
 
@@ -52,28 +53,25 @@ namespace TuesdaysAreFun.Tests.Cards
 		{
 			if (Mouse.IsClickingStart())
 			{
-				if (Mouse.Position.X > cardPos.X && Mouse.Position.X < cardPos.X + CARD_SIZE.X &&
-					Mouse.Position.Y > cardPos.Y && Mouse.Position.Y < cardPos.Y + CARD_SIZE.Y)
-				{
-					clickOffset = Mouse.Position - cardPos;
-				}
-				else
-				{
-					clickOffset = null;
-				}
+				clickOffset = card.ClickedOffset(Mouse.Position);
 			}
 			else if (Mouse.IsClicking())
 			{
 				if (clickOffset != null)
 				{
-					cardPos = Mouse.Position - clickOffset;
+					card.Position = Mouse.Position - clickOffset;
 				}
+			}
+
+			if (Keyboard.AreKeysDown(Enum.GetValues(typeof(Key))))
+			{
+				card.Position.Y -= 30;
 			}
 		}
 
 		public virtual void SendCommand(params string[] cmd)
 		{
-			cardPos.Y += 30;
+			card.Position.Y += 30;
 		}
 
 		public virtual void Update(TimeSpan deltaTime)
@@ -88,8 +86,7 @@ namespace TuesdaysAreFun.Tests.Cards
 			Handle.BeginRender();
 
 			stack.Render(Handle);
-
-			Handle.RenderImage(cardSprite, cardPos);
+			card.Render(Handle);
 
 			Handle.FinishRender();
 		}

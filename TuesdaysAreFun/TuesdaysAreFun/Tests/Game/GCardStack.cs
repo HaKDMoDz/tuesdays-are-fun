@@ -34,6 +34,17 @@ namespace TuesdaysAreFun.Tests.Game
 		public GCardStack() : this(new CardPile())
 		{ }
 
+		public Vector2 ClickedOffset(Vector2 clickLoc)
+		{
+			if (clickLoc.X >= Position.X && clickLoc.X <= Position.X + CardGame.CARD_SIZE.X &&
+				clickLoc.Y >= Position.Y && clickLoc.Y <= Position.Y + CardGame.CARD_SIZE.Y)
+			{
+				return clickLoc - Position;
+			}
+
+			return null;
+		}
+
 		public void Render(CardRenderWindow handle)
 		{
 			List<Vector2> cardPos = new List<Vector2>();
